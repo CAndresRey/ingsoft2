@@ -32,9 +32,10 @@ app.use(
 //Global Variables
 
 //Routes
-app.use(require('./routes/index'))
-app.use(require('./routes/notes'))
-app.use(require('./routes/users'))
+app.use(require('./routes/index'));
+app.use(require('./routes/notes'));
+app.use(require('./routes/users'));
+app.use(require('./routes/tareas'));
 
 //Static Files
 app.use(express.static(path.join(__dirname, 'public')))
