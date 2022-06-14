@@ -43,10 +43,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
-app.use(require('./routes'));
-app.use(require('./routes/users'));
+//Routes
+app.use(require('./routes/index'));
 app.use(require('./routes/notes'));
+app.use(require('./routes/users'));
+app.use(require('./routes/tareas'));
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
