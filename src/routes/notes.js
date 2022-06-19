@@ -6,6 +6,7 @@ const Note = require('../models/Note');
 
 // Helpers
 const { isAuthenticated } = require('../helpers/auth');
+const { createCollection } = require('../models/Note');
 
 // New Note
 router.get('/notes/add', isAuthenticated, (req, res) => {
@@ -16,10 +17,10 @@ router.post('/notes/new-note', isAuthenticated, async (req, res) => {
   const { title, description } = req.body;
   const errors = [];
   if (!title) {
-    errors.push({text: 'Please Write a Title.'});
+    errors.push({text: 'Please write a title.'});
   }
   if (!description) {
-    errors.push({text: 'Please Write a Description'});
+    errors.push({text: 'Please write a description'});
   }
   if (errors.length > 0) {
     res.render('notes/new-note', {
@@ -37,9 +38,16 @@ router.post('/notes/new-note', isAuthenticated, async (req, res) => {
 });
 
 // Get All Notes
-router.get('/notes', isAuthenticated, async (req, res) => {
-  const notes = await Note.find({user: req.user.id}).sort({date: 'desc'});
-  res.render('notes/all-notes', { notes });
+//router.get('/notes', isAuthenticated, async (req, res) => {
+  //const notes = await Note.find({user: req.user.id}).sort({date: 'desc'});
+  //res.render('notes/all-notes', { notes });
+//});
+
+ //get all notes
+ 
+router.get('/notes', async(req,res) => {
+   const notes = await Note.find();
+   res.render('notes/all-notes', {notes});
 });
 
 // Edit Notes
